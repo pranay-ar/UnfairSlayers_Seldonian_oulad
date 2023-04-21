@@ -6,7 +6,8 @@ from seldonian.utils.io_utils import load_pickle
 
 if __name__ == '__main__':
     # Load loan spec file
-    specfile = 'specs/spec_0.9.pkl'
+
+    specfile = './specs/spec_0.9.pkl'
     spec = load_pickle(specfile)
     SA = SeldonianAlgorithm(spec)
     passed_safety, solution = SA.run(write_cs_logfile=True)
@@ -16,4 +17,5 @@ if __name__ == '__main__':
         print("Failed safety test")
     print()
     print("Primary objective (log loss) evaluated on safety dataset:")
-    print(SA.evaluate_primary_objective(branch='safety_test', theta=solution))
+    print(SA.evaluate_primary_objective(branch='safety_test',theta=solution))
+

@@ -22,7 +22,7 @@ if __name__ == "__main__":
     plot_savename = os.path.join(
         results_dir, f'{constraint_name}_{performance_metric}.png')
 
-    specfile = f'specs/spec_0.9.pkl'
+    specfile = f'./specs/spec_0.9.pkl'
     spec = load_pickle(specfile)
 
     dataset = spec.dataset

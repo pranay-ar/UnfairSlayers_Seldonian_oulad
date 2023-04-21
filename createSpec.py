@@ -36,7 +36,7 @@ if __name__ == '__main__':
     primary_objective = objectives.binary_logistic_loss
     
     # Define behavioral constraints
-    constraint_strs = ['min((PR | [M])/(PR | [F]),(PR | [F])/(PR | [M])) >= 0.9'] 
+    constraint_strs = ['min((PR | [M])/(PR | [F]),(PR | [F])/(PR | [M])) >= 0.85'] 
     deltas = [0.05]
     
     # For each constraint (in this case only one), make a parse tree
@@ -70,6 +70,6 @@ if __name__ == '__main__':
         }
     )
 
-    spec_save_name = os.path.join(save_dir,'spec.pkl')
+    spec_save_name = os.path.join(save_dir,'./specs/spec.pkl')
     save_pickle(spec_save_name,spec)
     print(f"Saved Spec object to: {spec_save_name}")

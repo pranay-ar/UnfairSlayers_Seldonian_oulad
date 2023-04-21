@@ -16,7 +16,7 @@ if __name__ == "__main__":
     data_fracs = np.logspace(-3,0,15)
     n_workers = 8
     verbose=True
-    results_dir = f'results/loan_{constraint_name}_seldo_log_loss'
+    results_dir = f'results/oulad_{constraint_name}_seldo_log_loss_0.85'
     os.makedirs(results_dir,exist_ok=True)
 
     plot_savename = os.path.join(results_dir,f'{constraint_name}_{performance_metric}.png')

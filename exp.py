@@ -10,7 +10,7 @@ if __name__ == "__main__":
     run_experiments = True
     make_plots = True
     save_plot = False
-    constraint_name = 'predicitive_equality'
+    constraint_name = 'treatment_equality'
     performance_metric = 'log_loss'
     n_trials = 20
     data_fracs = np.logspace(-3, 0, 15)

@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     # Define behavioral constraints
     constraint_strs = [
-        'abs((FPR | [M]) - (FPR | [F])) <= 0.2']
+        'abs((FNR | [M])/(FPR | [M])-(FNR | [F])/(FPR | [F])) <= 0.2']
     deltas = [0.05]
 
     # For each constraint (in this case only one), make a parse tree

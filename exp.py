@@ -1,5 +1,5 @@
 import os
-import numpy as np 
+import numpy as np
 
 from experiments.generate_plots import SupervisedPlotGenerator
 from seldonian.utils.io_utils import load_pickle
@@ -10,33 +10,34 @@ if __name__ == "__main__":
     run_experiments = True
     make_plots = True
     save_plot = False
-    constraint_name = 'disparate_impact'
+    constraint_name = 'predicitive_equality'
     performance_metric = 'log_loss'
-    n_trials = 50
-    data_fracs = np.logspace(-3,0,15)
+    n_trials = 20
+    data_fracs = np.logspace(-3, 0, 15)
     n_workers = 8
-    verbose=True
+    verbose = True
     results_dir = f'results/oulad_{constraint_name}_seldo_log_loss_0.85'
-    os.makedirs(results_dir,exist_ok=True)
+    os.makedirs(results_dir, exist_ok=True)
 
-    plot_savename = os.path.join(results_dir,f'{constraint_name}_{performance_metric}.png')
+    plot_savename = os.path.join(
+        results_dir, f'{constraint_name}_{performance_metric}.png')
 
-    specfile = f'./spec.pkl'
+    specfile = f'specs/spec_0.9.pkl'
     spec = load_pickle(specfile)
 
     dataset = spec.dataset
     test_features = dataset.features
-    test_labels = dataset.labels 
+    test_labels = dataset.labels
 
-    def perf_eval_fn(y_pred,y,**kwargs):
+    def perf_eval_fn(y_pred, y, **kwargs):
         if performance_metric == 'log_loss':
-            return log_loss(y,y_pred)
+            return log_loss(y, y_pred)
 
     perf_eval_kwargs = {
-        'X':test_features,
-        'y':test_labels,
-        }
-    
+        'X': test_features,
+        'y': test_labels,
+    }
+
     plot_generator = SupervisedPlotGenerator(
         spec=spec,
         n_trials=n_trials,
@@ -47,24 +48,24 @@ if __name__ == "__main__":
         constraint_eval_fns=[],
         results_dir=results_dir,
         perf_eval_kwargs=perf_eval_kwargs,
-        )
-    
+    )
+
     if run_experiments:
         plot_generator.run_baseline_experiment(
-            model_name='random_classifier',verbose=verbose)
+            model_name='random_classifier', verbose=verbose)
 
         plot_generator.run_baseline_experiment(
-            model_name='logistic_regression',verbose=verbose)
+            model_name='logistic_regression', verbose=verbose)
 
     plot_generator.run_seldonian_experiment(verbose=verbose)
 
     if make_plots:
         if save_plot:
-            plot_generator.make_plots(fontsize=12,legend_fontsize=8,
-                performance_label=performance_metric,
-                performance_yscale='log',
-                savename=plot_savename)
+            plot_generator.make_plots(fontsize=12, legend_fontsize=8,
+                                      performance_label=performance_metric,
+                                      performance_yscale='log',
+                                      savename=plot_savename)
         else:
-            plot_generator.make_plots(fontsize=12,legend_fontsize=8,
-                performance_label=performance_metric,
-                performance_yscale='log')
+            plot_generator.make_plots(fontsize=12, legend_fontsize=8,
+                                      performance_label=performance_metric,
+                                      performance_yscale='log')

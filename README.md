@@ -39,3 +39,5 @@ Running this script for all the spec objects creates the following experiment pl
 ![higher_ed_eq](plots/constraint3_higher_ed_eq.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
 **Figure 3**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the higher education attribute.
+
+We compare the performance of our quasi-Seldonian algorithm (QSA)(blue) with the random classifier (green) and logistic_regression (orange) models. The points and bands in each sub-graph denotes the mean value computed across 50 trials.

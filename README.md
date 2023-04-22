@@ -11,7 +11,7 @@ In this tutorial, we show how Seldonian algorithm can be used in this context to
 The following outline the dataset preparation process of our pipeline. 
 
 - Firstly, we dropped the columns like student ID which have no importance in the predicition pipeline. 
-- Secondly, we manipulated the columns like highest education where we grouped divisions like A level or equivalent, post grads, and HE qualification to be a boolean 1 whereas lower than A level and no formal quals to be 0
+- Secondly, we manipulated the columns like highest education where we grouped divisions like A level or equivalent, post grads, and HE qualification to be a boolean 1 whereas lower than A level and no formal quals to be 0. This is done in order to make `higher_ed` attribute to be binary valued, which is used for further analysis.
 - We also converted columns like distinction to binaries. 
 - The next step is to convert the categorical variables into numerical values. This is done using the LabelEncoder function of the scikit-learn library. The LabelEncoder function assigns a numerical value to each unique categorical value in the column.
 
@@ -28,16 +28,16 @@ Running this script for all the spec objects creates the following experiment pl
 ![gender_disp](plots/disparate_0.9.png)
 ![gender_eq](plots/equalized_0.9.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
-**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the gender attribute.
+**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the _gender_ attribute.
 
 ![disability_disp](plots/Constraint2_disability.png)
 ![disability_eq](plots/Constraint2_disability_eq.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
-**Figure 2**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the disability attribute.
+**Figure 2**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the _disability_ attribute.
 
 ![higher_ed_disp](plots/constraint3_higher_ed_orig_disp.png)
 ![higher_ed_eq](plots/constraint3_higher_ed_eq.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
-**Figure 3**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the higher education attribute.
+**Figure 3**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the _higher education_ attribute.
 
 We compare the performance of our quasi-Seldonian algorithm (QSA)(blue) with the random classifier (green) and logistic_regression (orange) models. The points and bands in each sub-graph denotes the mean value computed across 50 trials.

@@ -42,6 +42,24 @@ Running this script for all the spec objects creates the following experiment pl
 
 We compare the performance of our quasi-Seldonian algorithm (QSA)(blue) with the random classifier (green) and logistic_regression (orange) models. The points and bands in each sub-graph denotes the mean value computed across 50 trials.
 
+## Fairness Constraints
+
+These are various fairness metrics that can be used to evaluate the fairness of machine learning models. Each metric measures a different aspect of fairness and aims to ensure that the model does not discriminate against any particular group.
+
+1. Disparate impact: This metric measures the ratio of the rate at which the positive outcome (such as getting a loan or being hired) occurs for one group (e.g., males) to the rate at which it occurs for another group (e.g., females). A value of 1 indicates no disparity, while a value less than 1 indicates that one group is less likely to receive the positive outcome. $min((PR | [M])/(PR | [F]),(PR | [F])/(PR | [M])) >= 0.8$
+
+2. Demographic parity: This metric measures the difference between the rate at which the positive outcome occurs for one group compared to another. A value of 0 indicates no difference, while a value greater than 0 indicates that one group is more likely to receive the positive outcome. $abs((PR | [M]) - (PR | [F])) <= 0.2$
+
+3. Equalized odds: This metric measures the difference in error rates between the groups. It requires that the false negative rate (FNR) and false positive rate (FPR) are similar across the groups. $abs((FNR | [M]) - (FNR | [F])) + abs((FPR | [M]) - (FPR | [F])) <= 0.35$
+
+4. Equal opportunity: This metric measures the difference in the FNR between the groups. It requires that the model makes false negatives at a similar rate across the groups. $abs((FNR | [M]) - (FNR | [F])) <= 0.2$
+
+5. Predictive equality: This metric measures the difference in the FPR between the groups. It requires that the model makes false positives at a similar rate across the groups. $abs((FPR | [M]) - (FPR | [F])) <= 0.2$
+
+6. Treatment of equality: This metric measures the ratio of the FNR to the FPR between the groups. It requires that the ratio is similar across the groups. $abs((FNR | [M])/(FPR | [M])-(FNR | [F])/(FPR | [F])) <= 0.2$
+
+7. Overall accuracy equality: This metric measures the difference in the overall accuracy of the model between the groups. $abs((TPR | [M])+(TNR | [M])-((TPR | [F])+(TNR | [F]))) <= 0.2$
+
 ## Summary
 
 In this tutorial, we implemented the Seldonian Toolkit on the OULAD dataset, building a classifier which predicts the success of a student in a given course. We played around with a variety of constraints, both differing in constraint format and the attribute considered for fairness. We compared the performance of the Seldonian Algorithm with respect to that of a Random Classifier and a Logistic Regression model with the help of `experiments` library. For the case of `higher_ed`, as the performance of the Seldonian Algorithm approaches that of a logistic regression model without constraints, the logistic regression model violates the fairness constraints very often, while the QSA algorithm always respects the fairness bounds and delivering similar performance.

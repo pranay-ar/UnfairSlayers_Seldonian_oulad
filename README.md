@@ -41,3 +41,7 @@ Running this script for all the spec objects creates the following experiment pl
 **Figure 3**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the _higher education_ attribute.
 
 We compare the performance of our quasi-Seldonian algorithm (QSA)(blue) with the random classifier (green) and logistic_regression (orange) models. The points and bands in each sub-graph denotes the mean value computed across 50 trials.
+
+## Summary
+
+In this tutorial, we implemented the Seldonian Toolkit on the OULAD dataset, building a classifier which predicts the success of a student in a given course. We played around with a variety of constraints, both differing in constraint format and the attribute considered for fairness. We compared the performance of the Seldonian Algorithm with respect to that of a Random Classifier and a Logistic Regression model with the help of `experiments` library. For the case of `higher_ed`, as the performance of the Seldonian Algorithm approaches that of a logistic regression model without constraints, the logistic regression model violates the fairness constraints very often, while the QSA algorithm always respects the fairness bounds and delivering similar performance.

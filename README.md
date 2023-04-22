@@ -8,7 +8,7 @@ In this tutorial, we show how Seldonian algorithm can be used in this context to
 
 ## Dataset Preparation
 
-The following outline the dataset preparation process of our pipeline. 
+The dataset for this tutorial can be found at this [link](https://www.kaggle.com/datasets/anlgrbz/student-demographics-online-education-dataoulad) and the file `preprocess.py` converts the dataset, into a format suitable for our task. The following outline the dataset preparation process of our pipeline. 
 
 - Firstly, we dropped the columns like student ID which have no importance in the predicition pipeline. 
 - Secondly, we manipulated the columns like highest education where we grouped divisions like A level or equivalent, post grads, and HE qualification to be a boolean 1 whereas lower than A level and no formal quals to be 0. This is done in order to make `higher_ed` attribute to be binary valued, which is used for further analysis.
@@ -17,7 +17,7 @@ The following outline the dataset preparation process of our pipeline.
 
 - After converting the categorical variables, the next step is to standardize the numerical variables. This is done using the StandardScaler function of the scikit-learn library. The StandardScaler function standardizes the numerical variables by subtracting the mean and dividing by the standard deviation.
 
-Once the preprocessing steps are complete, we save the dataframe and the meta data which is later used in training and experimentation. 
+Once the preprocessing steps are complete, we save the dataframe and the meta data which is later used in training and experimentation. The preprocessing step is necessary because we want to work upon the attributes of `gender`, `disability` and `higher_education` to assess whether the predictions are unfair on these attributes.
 
 ## Seldonian Experiments
 

@@ -47,8 +47,8 @@
     "c__age_band_0-35",
     "c__age_band_35-55",
     "c__age_band_55<=",
-    "c__disability_N",
-    "c__disability_Y",
+    "N",
+    "Y",
     "n__num_of_prev_attempts",
     "n__studied_credits",
     "final_result"
@@ -56,6 +56,8 @@
   "label_col_names": "final_result",
   "sensitive_col_names": [
     "F",
-    "M"
+    "M",
+    "N",
+    "Y"
   ]
 }

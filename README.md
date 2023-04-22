@@ -19,3 +19,23 @@ The following outline the dataset preparation process of our pipeline.
 
 Once the preprocessing steps are complete, we save the dataframe and the meta data which is later used in training and experimentation. 
 
+## Seldonian Experiments
+
+`exp.py` takes care of running the seldonian experiments across various spec objects. The file takes two command line inputs: `<attribute>` which is the name of the attribute to be considered for analysis (`[gender,higher_ed,disability]`) and `<constraint_type>` which is the nature of the constraint string used to create the spec object (`[disp,eq]`).
+
+Running this script for all the spec objects creates the following experiment plots
+
+![gender_disp](plots/disparate_0.9.png)
+![gender_eq](plots/equalized_0.9.png)
+<!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
+**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the gender attribute.
+
+![disability_disp](plots/Constraint2_disability.png)
+![disability_eq](plots/Constraint2_disability_eq.png)
+<!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
+**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the disability attribute.
+
+![higher_ed_disp](plots/constraint3_higher_ed_orig_disp.png)
+![higher_ed_eq](plots/constraint3_higher_ed_eq.png)
+<!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
+**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the higher education attribute.

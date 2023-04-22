@@ -28,11 +28,8 @@
     "c__region_Wales",
     "c__region_West Midlands Region",
     "c__region_Yorkshire Region",
-    "c__highest_education_A Level or Equivalent",
-    "c__highest_education_HE Qualification",
-    "c__highest_education_Lower Than A Level",
-    "c__highest_education_No Formal quals",
-    "c__highest_education_Post Graduate Qualification",
+    "he0",
+    "he1",
     "c__imd_band_0-10%",
     "c__imd_band_10-20",
     "c__imd_band_20-30%",
@@ -58,6 +55,8 @@
     "F",
     "M",
     "N",
-    "Y"
+    "Y",
+    "he0",
+    "he1"
   ]
 }

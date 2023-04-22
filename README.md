@@ -60,6 +60,14 @@ These are various fairness metrics that can be used to evaluate the fairness of 
 
 7. Overall accuracy equality: This metric measures the difference in the overall accuracy of the model between the groups. $abs((TPR | [M])+(TNR | [M])-((TPR | [F])+(TNR | [F]))) <= 0.2$
 
+## How does the Seldonian algorithm work in building a fair online education system?
+
+In the context of building a fair online education system, the Seldonian algorithm can be used to ensure that the system does not discriminate against certain student demographics, such as gender, age, disability, etc. The algorithm achieves this by adding constraints to the learning process that ensure that the predictions made by the model are fair across these demographics.
+
+For example, suppose we want to ensure that our online education system is fair with respect to gender. We can add a constraint to the learning process that ensures that the system's predictions are not biased towards one gender. We can formulate this constraint using the concept of "disparate impact," which measures the ratio of the rate at which a positive outcome occurs for one gender to the rate at which it occurs for the other gender. We can set a threshold for this ratio, and then add a constraint to the learning process that ensures that the ratio does not fall below this threshold.
+
+The Seldonian algorithm optimizes the model to minimize the prediction error subject to these constraints. This ensures that the model is not only accurate but also fair across various student demographics.
+
 ## Summary
 
 In this tutorial, we implemented the Seldonian Toolkit on the OULAD dataset, building a classifier which predicts the success of a student in a given course. We played around with a variety of constraints, both differing in constraint format and the attribute considered for fairness. We compared the performance of the Seldonian Algorithm with respect to that of a Random Classifier and a Logistic Regression model with the help of `experiments` library. For the case of `higher_ed`, as the performance of the Seldonian Algorithm approaches that of a logistic regression model without constraints, the logistic regression model violates the fairness constraints very often, while the QSA algorithm always respects the fairness bounds and delivering similar performance.

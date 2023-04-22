@@ -11,7 +11,10 @@ from seldonian.models.models import (
     BinaryLogisticRegressionModel as LogisticRegressionModel)
 from seldonian.models import objectives
 
+import sys
+
 if __name__ == '__main__':
+    attr_vals = {'gender':('M','F'),'disability':('N','Y'),'higher_education':('he0','he1')}
     data_pth = "studentInfoconverted.csv"
     metadata_pth = "metadata_studentInfo.json"
     save_dir = '.'
@@ -19,6 +22,9 @@ if __name__ == '__main__':
     # Create dataset from data and metadata file
     regime = 'supervised_learning'
     sub_regime = 'classification'
+
+    attr_arg = sys.argv[1]
+    constraint_arg = sys.argv[2]
 
     loader = DataSetLoader(
         regime=regime)
@@ -36,8 +42,14 @@ if __name__ == '__main__':
     primary_objective = objectives.binary_logistic_loss
 
     # Define behavioral constraints
-    constraint_strs = [
-        'abs((FNR | [M])/(FPR | [M])-(FNR | [F])/(FPR | [F])) <= 0.2']
+    # Change this string to implement the constraint
+
+    if constraint_arg == 'disp':
+        constraint_strs = [
+            f'min((PR | [{attr_vals[attr_arg][0]}])/(PR | [{attr_vals[attr_arg][1]}]),(PR | [{attr_vals[attr_arg][1]}])/(PR | [{attr_vals[attr_arg][0]}])) >= 0.9']
+    elif constraint_arg == 'eq':
+        constraint_strs = [
+            f'abs((FNR | [{attr_vals[attr_arg][0]}]) - (FNR | [{attr_vals[attr_arg][1]}])) + abs((FPR | [{attr_vals[attr_arg][0]}]) - (FPR | [{attr_vals[attr_arg][1]}])) <= 0.1']
     deltas = [0.05]
 
     # For each constraint (in this case only one), make a parse tree
@@ -71,6 +83,6 @@ if __name__ == '__main__':
         }
     )
 
-    spec_save_name = os.path.join(save_dir, './specs/spec.pkl')
+    spec_save_name = os.path.join(save_dir, f'./specs/spec_{attr_arg}_{constraint_arg}.pkl')
     save_pickle(spec_save_name, spec)
     print(f"Saved Spec object to: {spec_save_name}")

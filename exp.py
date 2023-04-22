@@ -5,24 +5,34 @@ from experiments.generate_plots import SupervisedPlotGenerator
 from seldonian.utils.io_utils import load_pickle
 from sklearn.metrics import log_loss
 
+import sys
+
 if __name__ == "__main__":
     # Parameter setup
+    attr_arg = sys.argv[1]
+    constraint_arg = sys.argv[2]
+
+
     run_experiments = True
     make_plots = True
     save_plot = False
-    constraint_name = 'treatment_equality'
+    constraint_name = attr_arg+'_'+constraint_arg
     performance_metric = 'log_loss'
-    n_trials = 20
+    n_trials = 50
     data_fracs = np.logspace(-3, 0, 15)
     n_workers = 8
     verbose = True
-    results_dir = f'results/oulad_{constraint_name}_seldo_log_loss_0.85'
+    results_dir = f'results/oulad_{constraint_name}_seldo_log_loss'
+    if constraint_arg == 'disp':
+        results_dir += '_0.9'
+    elif constraint_arg == 'eq':
+        results_dir += '_0.1'
     os.makedirs(results_dir, exist_ok=True)
 
     plot_savename = os.path.join(
         results_dir, f'{constraint_name}_{performance_metric}.png')
 
-    specfile = f'./specs/spec_0.9.pkl'
+    specfile = f'./specs/spec_{attr_arg}_{constraint_arg}.pkl'
     spec = load_pickle(specfile)
 
     dataset = spec.dataset

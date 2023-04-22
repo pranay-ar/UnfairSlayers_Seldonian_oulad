@@ -33,9 +33,9 @@ Running this script for all the spec objects creates the following experiment pl
 ![disability_disp](plots/Constraint2_disability.png)
 ![disability_eq](plots/Constraint2_disability_eq.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
-**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the disability attribute.
+**Figure 2**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the disability attribute.
 
 ![higher_ed_disp](plots/constraint3_higher_ed_orig_disp.png)
 ![higher_ed_eq](plots/constraint3_higher_ed_eq.png)
 <!-- ![disparate_impact_0.05](images/disparate_impact_0.05_accuracy.png) -->
-**Figure 1**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the higher education attribute.
+**Figure 3**: Seldonian Experiments using disparate impact and equalized odds as the definition of fairness on the higher education attribute.

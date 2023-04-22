@@ -80,7 +80,8 @@ def make_seldonian_dataset(input_path,output_path_data,output_path_metadata):
     
     # Change name of the two one-hot encoded sex columns to M and F
     outdf.rename(columns={'c__gender_F':'F','c__gender_M':'M'},inplace=True)
-    
+    outdf.rename(columns={'c__disability_N':'N','c__disability_Y':'Y'},inplace=True)
+    # outdf.rename(columns={'c__gender_F':'F','c__gender_M':'M'},inplace=True)
     # Add label column into final dataframe
     outdf['final_result'] = y
     
@@ -91,11 +92,11 @@ def make_seldonian_dataset(input_path,output_path_data,output_path_metadata):
     
     # Save metadata json file
     metadata_dict = {
-        "regime":"supervised",
+        "regime":"supervised_learning",
         "sub_regime":"classification",
         "all_col_names":list(outdf.columns),
         "label_col_names":"final_result",
-        "sensitive_col_names":["F","M"]
+        "sensitive_col_names":["F","M","N","Y"]
     }
     
     with open(output_path_metadata,'w') as outfile:
